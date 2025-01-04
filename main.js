@@ -48,7 +48,7 @@ function handleInputEvent(event) {
 }
 
 /**
- * Verarbeitet die Aktion "down" für einen Schalter
+ * Verarbeitet die Aktion "short" für einen Schalter
  * @param {number} inputId - ID des Eingangs (0 oder 1)
  * @param {object} aktorStatus - Status des Aktors
  */
@@ -69,24 +69,17 @@ function processSingleAction(inputId, aktorStatus) {
 }
 
 /**
- * Verarbeitet die Aktion "down" für einen Schalter
+ * Verarbeitet die Aktion "long" für einen Schalter
  * @param {number} inputId - ID des Eingangs (0 oder 1)
  * @param {object} aktorStatus - Status des Aktors
  */
-//TODO: Implementieren Sie die Funktion processLongAction
 function processLongAction(inputId, aktorStatus) {
   if (aktorStatus.output) {
     print("Eingang " + inputId + " - Aktor ausschalten");
     switchAktor(inputId, false); // Schalte Aktor aus
   } else {
-    print("Eingang " + inputId + " - Schließen und Aktor einschalten");
-    getPos(function (positions) {
-      if (arePositionsValid(positions)) {
-        handleRolloClosing(inputId, positions);
-      } else {
-        print("Ungültige Positionsdaten erhalten.");
-      }
-    });
+    print("Eingang " + inputId + " - Aktor einschalten");
+    switchAktor(inputId, true); // Schalte Aktor ein
   }
 }
 
